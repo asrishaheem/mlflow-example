@@ -45,6 +45,8 @@ if __name__ == "__main__":
     alpha = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
     l1_ratio = float(sys.argv[3]) if len(sys.argv) > 3 else 0.5
 
+    print(experiment_id, alpha, l1_ratio)
+    
     with mlflow.start_run(experiment_id=experiment_id):
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
         lr.fit(train_x, train_y)
