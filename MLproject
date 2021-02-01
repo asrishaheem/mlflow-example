@@ -5,7 +5,7 @@ conda_env: conda.yaml
 entry_points:
   main:
     parameters:
-      experiment_id: {type: int, default: None}
-      alpha: {type: float, default: 0.5}
+      experiment_id: type: int
+      alpha: type: float
       l1_ratio: {type: float, default: 0.1}
     command: "python train.py {experiment_id} {alpha} {l1_ratio}"
