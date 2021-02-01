@@ -25,6 +25,13 @@ def eval_metrics(actual, pred):
 
 
 if __name__ == "__main__":
+
+    experiment_id = int(sys.argv[1]) if len(sys.argv) > 1 else 0
+    alpha = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
+    l1_ratio = float(sys.argv[3]) if len(sys.argv) > 3 else 0.5
+
+    print(experiment_id, alpha, l1_ratio)
+    
     warnings.filterwarnings("ignore")
     np.random.seed(40)
 
@@ -41,12 +48,6 @@ if __name__ == "__main__":
     train_y = train[["quality"]]
     test_y = test[["quality"]]
 
-    experiment_id = int(sys.argv[1]) if len(sys.argv) > 1 else 0
-    alpha = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
-    l1_ratio = float(sys.argv[3]) if len(sys.argv) > 3 else 0.5
-
-    print(experiment_id, alpha, l1_ratio)
-    
     with mlflow.start_run(experiment_id=experiment_id):
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
         lr.fit(train_x, train_y)
